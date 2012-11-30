@@ -66,6 +66,7 @@ import com.google.code.linkedinapi.schema.impl.DateOfBirthImpl;
 import com.google.code.linkedinapi.schema.impl.EditorImpl;
 import com.google.code.linkedinapi.schema.impl.EducationImpl;
 import com.google.code.linkedinapi.schema.impl.EducationsImpl;
+import com.google.code.linkedinapi.schema.impl.EmailAddressImpl;
 import com.google.code.linkedinapi.schema.impl.EmailDigestFrequencyImpl;
 import com.google.code.linkedinapi.schema.impl.EmailDomainsImpl;
 import com.google.code.linkedinapi.schema.impl.EmployeeCountRangeImpl;

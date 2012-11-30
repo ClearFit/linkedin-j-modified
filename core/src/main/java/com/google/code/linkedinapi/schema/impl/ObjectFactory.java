@@ -67,6 +67,7 @@ import com.google.code.linkedinapi.schema.DateOfBirth;
 import com.google.code.linkedinapi.schema.Editor;
 import com.google.code.linkedinapi.schema.Education;
 import com.google.code.linkedinapi.schema.Educations;
+import com.google.code.linkedinapi.schema.EmailAddress;
 import com.google.code.linkedinapi.schema.EmailDigestFrequency;
 import com.google.code.linkedinapi.schema.EmailDomains;
 import com.google.code.linkedinapi.schema.EmployeeCountRange;
@@ -2659,9 +2660,13 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "", name = "email-address")
+    /*@XmlElementDecl(namespace = "", name = "email-address")
     public JAXBElement<String> createEmailAddress(String value) {
         return new JAXBElement<String>(_EmailAddress_QNAME, String.class, null, value);
+    }*/
+    
+    public EmailAddressImpl createEmailAddress() {
+        return new EmailAddressImpl();
     }
 
     /**

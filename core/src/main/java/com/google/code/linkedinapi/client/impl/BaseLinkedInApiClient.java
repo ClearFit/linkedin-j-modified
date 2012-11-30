@@ -78,6 +78,7 @@ import com.google.code.linkedinapi.schema.Company;
 import com.google.code.linkedinapi.schema.CompanySearch;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Content;
+import com.google.code.linkedinapi.schema.EmailAddress;
 import com.google.code.linkedinapi.schema.EmailDigestFrequency;
 import com.google.code.linkedinapi.schema.EmailDigestFrequencyCode;
 import com.google.code.linkedinapi.schema.Error;
@@ -1107,6 +1108,14 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).buildUrl();
 
         return readResponse(Person.class, callApiMethod(apiUrl));
+    }
+    
+    @Override
+    public EmailAddress getEmailAddressForCurrentUser() {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_EMAIL_ADDRESS_FOR_CURRENT_USER);
+        String                apiUrl  = builder.buildUrl();
+        
+        return readResponse(EmailAddress.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -3771,6 +3780,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
             }
             
             oAuthService.signRequestWithToken(request, accessToken);
+            System.out.println("REquest "+request.toString());
             request.connect();
 
             if (request.getResponseCode() != expected) {

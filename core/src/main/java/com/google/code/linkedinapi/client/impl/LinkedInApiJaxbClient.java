@@ -15,6 +15,7 @@
  * 
  */
 package com.google.code.linkedinapi.client.impl;
+
 import java.io.InputStream;
 import java.io.StringWriter;
 
@@ -35,13 +36,17 @@ import com.google.code.linkedinapi.schema.SchemaElementFactory;
  */
 public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
 
-    /** Field description */
+    /**
+     * Field description
+     */
     private static final String JAXB_PACKAGE_NAME = "com.google.code.linkedinapi.schema";
-    
-    /** Field description */
+    /**
+     * Field description
+     */
     private static final SchemaElementFactory<JAXBElement<?>> OBJECT_FACTORY = new JaxbElementFactory();
-    
-    /** Do not access directly. It may be null!!!. Use {@link #getJaxbContext()} */
+    /**
+     * Do not access directly. It may be null!!!. Use {@link #getJaxbContext()}
+     */
     private static JAXBContext JAXB_CONTEXT;
 
     /**
@@ -67,8 +72,8 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     @SuppressWarnings("unchecked")
     protected <T> T unmarshallObject(Class<T> clazz, InputStream xmlContent) {
         try {
-            Unmarshaller u  = getJaxbContext().createUnmarshaller();
-
+            Unmarshaller u = getJaxbContext().createUnmarshaller();
+            
             return (T) u.unmarshal(xmlContent);
         } catch (JAXBException e) {
             throw new LinkedInApiClientException(e);
@@ -86,7 +91,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     protected String marshallObject(Object element) {
         try {
             StringWriter writer = new StringWriter();
-            Marshaller   m = getJaxbContext().createMarshaller();
+            Marshaller m = getJaxbContext().createMarshaller();
 
             m.marshal(element, writer);
 
@@ -102,9 +107,9 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      * @return
      */
     protected SchemaElementFactory<?> createObjectFactory() {
-    	return OBJECT_FACTORY;
+        return OBJECT_FACTORY;
     }
-    
+
     /**
      * Method description
      *
@@ -121,29 +126,30 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      * Method description
      *
      */
-	protected JAXBContext getJaxbContext() throws JAXBException {
-		if (JAXB_CONTEXT == null ) {
-			JAXB_CONTEXT = JAXBContext.newInstance(JAXB_PACKAGE_NAME);
-		}
-		return JAXB_CONTEXT;
-	}
+    protected JAXBContext getJaxbContext() throws JAXBException {
+        if (JAXB_CONTEXT == null) {
+            JAXB_CONTEXT = JAXBContext.newInstance(JAXB_PACKAGE_NAME);
+        }
+        return JAXB_CONTEXT;
+    }
 
     /**
      * Method description
      *
      */
-	protected void setJaxbContext(JAXBContext context) {
-		JAXB_CONTEXT = context;
-	}
-	
-	private static class JaxbElementFactory extends ObjectFactory implements SchemaElementFactory<JAXBElement<?>> {
-		public JaxbElementFactory() {
-			super();
-		}
-	}
+    protected void setJaxbContext(JAXBContext context) {
+        JAXB_CONTEXT = context;
+    }
 
-	@Override
-	public JobBuilder newJobBuilder() {
-		return new JobBuilderImpl(OBJECT_FACTORY);
-	}
+    private static class JaxbElementFactory extends ObjectFactory implements SchemaElementFactory<JAXBElement<?>> {
+
+        public JaxbElementFactory() {
+            super();
+        }
+    }
+
+    @Override
+    public JobBuilder newJobBuilder() {
+        return new JobBuilderImpl(OBJECT_FACTORY);
+    }
 }
