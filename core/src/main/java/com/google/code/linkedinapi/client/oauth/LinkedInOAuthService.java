@@ -43,6 +43,8 @@ public interface LinkedInOAuthService extends LinkedInCommunicationClient {
      */
     public LinkedInRequestToken getOAuthRequestToken(String callBackUrl);
     
+    public LinkedInRequestToken getOAuthRequestToken(String callBackUrl, String scopeParams);
+    
     /**
      * Gets the o auth access token.
      * 

@@ -165,9 +165,17 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
      */
     @Override
     public LinkedInRequestToken getOAuthRequestToken(String callBackUrl) {
+        return getOAuthRequestToken(callBackUrl, null);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public LinkedInRequestToken getOAuthRequestToken(String callBackUrl, String scopeParameters) {
         try {
         	final OAuthConsumer consumer = getOAuthConsumer();
-        	final OAuthProvider provider = getOAuthProvider();
+        	final OAuthProvider provider = getOAuthProvider(scopeParameters);
         	
             String               authorizationUrl = provider.retrieveRequestToken(consumer, callBackUrl);
             LinkedInRequestToken requestToken     = new LinkedInRequestToken(consumer.getToken(),
@@ -227,7 +235,12 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
      *
      */
     protected OAuthProvider getOAuthProvider() {
-    	DefaultOAuthProvider provider = new DefaultOAuthProvider(LinkedInApiUrls.LINKED_IN_OAUTH_REQUEST_TOKEN_URL,
+            return getOAuthProvider(null);
+	}
+    
+    protected OAuthProvider getOAuthProvider(String scopeParameters) {
+        DefaultOAuthProvider provider = new DefaultOAuthProvider(LinkedInApiUrls.LINKED_IN_OAUTH_REQUEST_TOKEN_URL+
+                        (scopeParameters!=null?"?scope="+scopeParameters:""),
 		        LinkedInApiUrls.LINKED_IN_OAUTH_ACCESS_TOKEN_URL, LinkedInApiUrls.LINKED_IN_OAUTH_AUTHORIZE_URL);
     	
     	provider.setOAuth10a(OAUTH_VERSION_1_0_a.equals(ApplicationConstants.OAUTH_VERSION));
@@ -237,7 +250,7 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
         }
     	
     	return provider;
-	}
+    }
 
     /** 
     *
