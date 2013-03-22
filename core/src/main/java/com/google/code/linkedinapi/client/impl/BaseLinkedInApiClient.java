@@ -69,6 +69,7 @@ import com.google.code.linkedinapi.client.oauth.LinkedInOAuthService;
 import com.google.code.linkedinapi.client.oauth.LinkedInOAuthServiceFactory;
 import com.google.code.linkedinapi.schema.Activity;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
+import com.google.code.linkedinapi.schema.Attachment;
 import com.google.code.linkedinapi.schema.Attribution;
 import com.google.code.linkedinapi.schema.Authorization;
 import com.google.code.linkedinapi.schema.Comment;
@@ -3305,6 +3306,24 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 	}
 
 	@Override
+        public void createPost(String groupId, String title, String summary, String submittedUrl, String postTitle, String postDescription, String thumbnailUrl) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.CREATE_POST);
+        String                apiUrl  = builder.withField(ParameterNames.ID, groupId).buildUrl();
+        Post         post = OBJECT_FACTORY.createPost();
+        post.setTitle(title);
+        post.setSummary(summary);
+        Content      content = OBJECT_FACTORY.createContent();
+        content.setSubmittedUrl(submittedUrl);
+        content.setTitle(postTitle);
+        content.setDescription(postDescription);
+        content.setSubmittedImageUrl(thumbnailUrl);
+        post.setContent(content);
+        
+        callApiMethod(apiUrl, marshallObject(post), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                HttpURLConnection.HTTP_CREATED);
+        }
+
+	@Override
 	public void deleteGroupSuggestion(String groupId) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.DELETE_GROUP_SUGGESTION);
         String                apiUrl  = builder.withField(ParameterNames.ID, groupId).buildUrl();
@@ -3780,7 +3799,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
             }
             
             oAuthService.signRequestWithToken(request, accessToken);
-            System.out.println("REquest "+request.toString());
             request.connect();
 
             if (request.getResponseCode() != expected) {

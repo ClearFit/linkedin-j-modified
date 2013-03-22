@@ -29,6 +29,7 @@ import com.google.code.linkedinapi.schema.Adapter1;
 import com.google.code.linkedinapi.schema.Attachment;
 import com.google.code.linkedinapi.schema.Category;
 import com.google.code.linkedinapi.schema.Comments;
+import com.google.code.linkedinapi.schema.Content;
 import com.google.code.linkedinapi.schema.Creator;
 import com.google.code.linkedinapi.schema.Likes;
 import com.google.code.linkedinapi.schema.Post;
@@ -48,7 +49,8 @@ import com.google.code.linkedinapi.schema.Type;
     "relationToViewer",
     "attachment",
     "comments",
-    "siteGroupPostUrl"
+    "siteGroupPostUrl",
+    "content"
 })
 @XmlRootElement(name = "post")
 public class PostImpl
@@ -82,6 +84,8 @@ public class PostImpl
     protected CommentsImpl comments;
     @XmlElement(name = "site-group-post-url")
     protected String siteGroupPostUrl;
+    @XmlElement(name = "content", type = ContentImpl.class)
+    protected ContentImpl content;
 
     public String getId() {
         return id;
@@ -179,4 +183,13 @@ public class PostImpl
         this.siteGroupPostUrl = value;
     }
 
+    public Content getContent() {
+        return content;
+    }
+
+    public void setContent(Content content) {
+        this.content = (ContentImpl)content;
+    }
+
+    
 }

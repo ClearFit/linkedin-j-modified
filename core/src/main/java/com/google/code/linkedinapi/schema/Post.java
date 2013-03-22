@@ -311,4 +311,8 @@ public interface Post
      */
     void setSiteGroupPostUrl(String value);
 
+    void setContent(Content content);
+    
+    Content getContent();
+
 }

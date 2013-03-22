@@ -393,6 +393,14 @@ public interface GroupsApiClient extends LinkedInAuthenticationClient {
 	public void createPost(String groupId, String title, String summary);
 	
 	/**
+	 * Creates a discussion post.
+	 * 
+	 * @param title the title
+	 * @param summary the summary
+	 */
+	public void createPost(String groupId, String title, String summary, String submittedUrl, String postTitle, String postDescription, String thumbnailUrl);
+	
+	/**
 	 * Like post.
 	 * 
 	 * @param postId the post id

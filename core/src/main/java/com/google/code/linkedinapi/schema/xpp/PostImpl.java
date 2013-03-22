@@ -26,6 +26,7 @@ import org.xmlpull.v1.XmlSerializer;
 import com.google.code.linkedinapi.schema.Attachment;
 import com.google.code.linkedinapi.schema.Category;
 import com.google.code.linkedinapi.schema.Comments;
+import com.google.code.linkedinapi.schema.Content;
 import com.google.code.linkedinapi.schema.Creator;
 import com.google.code.linkedinapi.schema.Likes;
 import com.google.code.linkedinapi.schema.Post;
@@ -49,6 +50,7 @@ extends BaseSchemaEntity    implements Post
     protected AttachmentImpl attachment;
     protected CommentsImpl comments;
     protected String siteGroupPostUrl;
+    protected Content content;
 
     public String getId() {
         return id;
@@ -146,6 +148,16 @@ extends BaseSchemaEntity    implements Post
         this.siteGroupPostUrl = value;
     }
 
+    public Content getContent() {
+        return content;
+    }
+
+    public void setContent(Content content) {
+        this.content = content;
+    }
+    
+    
+
     @Override
     public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, null);
@@ -223,6 +235,7 @@ extends BaseSchemaEntity    implements Post
             ((CommentsImpl) getComments()).toXml(serializer);
         }
         XppUtils.setElementValueToNode(element, "site-group-post-url", getSiteGroupPostUrl());
+        XppUtils.setElementValueToNode(element, "content", getContent());
         
         
         serializer.endTag(null, "post");
