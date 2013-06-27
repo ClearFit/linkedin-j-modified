@@ -35,7 +35,7 @@ public class LinkedInApiClientFactory {
     /** The Constant factoriesMap. */
     private static final Map<LinkedInApiConsumer, LinkedInApiClientFactory> factoriesMap =
         new ConcurrentHashMap<LinkedInApiConsumer, LinkedInApiClientFactory>();
-    
+
     /** The task executor. */
     private ExecutorService taskExecutor = Executors.newCachedThreadPool();
 
@@ -44,19 +44,19 @@ public class LinkedInApiClientFactory {
 
     /** The default client impl. */
     private Constructor<? extends LinkedInApiClient> defaultClientImpl;
-    
+
     /**
      * Instantiates a new linked in api client factory.
-     * 
+     *
      * @param apiConsumer the api consumer
      */
 	private LinkedInApiClientFactory(LinkedInApiConsumer apiConsumer) {
         this.apiConsumer = apiConsumer;
     }
-	
+
     /**
      * Sets the task executor.
-     * 
+     *
      * @param taskExecutor the new task executor
      */
 	public void setTaskExecutor(ExecutorService taskExecutor) {
@@ -65,10 +65,10 @@ public class LinkedInApiClientFactory {
 
     /**
      * New instance.
-     * 
+     *
      * @param consumerKey the consumer key
      * @param consumerSecret the consumer secret
-     * 
+     *
      * @return the linked in api client factory
      */
     public static LinkedInApiClientFactory newInstance(String consumerKey, String consumerSecret) {
@@ -77,14 +77,14 @@ public class LinkedInApiClientFactory {
 
     /**
      * New instance.
-     * 
+     *
      * @param apiConsumer the api consumer
-     * 
+     *
      * @return the linked in api client factory
      */
     public static synchronized LinkedInApiClientFactory newInstance(LinkedInApiConsumer apiConsumer) {
     	validateConsumerKey(apiConsumer);
-    	
+
         LinkedInApiClientFactory factory = factoriesMap.get(apiConsumer);
 
         if (factory == null) {
@@ -97,9 +97,9 @@ public class LinkedInApiClientFactory {
 
     /**
      * Creates a new LinkedInApiClient object.
-     * 
+     *
      * @param accessToken the access token
-     * 
+     *
      * @return the linked in api client
      */
     @SuppressWarnings("unchecked")
@@ -108,10 +108,10 @@ public class LinkedInApiClientFactory {
     	try {
     		if (defaultClientImpl == null) {
         		Class<? extends LinkedInApiClient> clazz = (Class<? extends LinkedInApiClient>) Class.forName(ApplicationConstants.CLIENT_DEFAULT_IMPL);
-        		
+
         		defaultClientImpl = clazz.getConstructor(String.class, String.class);
     		}
-			
+
 			final LinkedInApiClient client = defaultClientImpl.newInstance(apiConsumer.getConsumerKey(), apiConsumer.getConsumerSecret());
 
 			client.setAccessToken(accessToken);
@@ -124,10 +124,10 @@ public class LinkedInApiClientFactory {
 
     /**
      * Creates a new LinkedInApiClient object.
-     * 
+     *
      * @param implClass the impl class
      * @param accessToken the access token
-     * 
+     *
      * @return the linked in api client
      */
 	public LinkedInApiClient createLinkedInApiClient(Class<? extends LinkedInApiClient> implClass, LinkedInAccessToken accessToken) {
@@ -142,12 +142,12 @@ public class LinkedInApiClientFactory {
 			throw new LinkedInApiClientException(e);
 		}
     }
-    
+
     /**
      * Creates a new LinkedInApiClient object.
-     * 
+     *
      * @param accessToken the access token
-     * 
+     *
      * @return the async linked in api client
      */
     public AsyncLinkedInApiClient createAsyncLinkedInApiClient(LinkedInAccessToken accessToken) {
@@ -156,149 +156,149 @@ public class LinkedInApiClientFactory {
 
         return new AsyncLinkedInApiClientAdapter(client, taskExecutor);
     }
-    
+
     /**
      * Creates a new LinkedInApiClient object.
-     * 
+     *
      * @param token the token
      * @param tokenSecret the token secret
-     * 
+     *
      * @return the linked in api client
      */
     public LinkedInApiClient createLinkedInApiClient(String token, String tokenSecret) {
         return createLinkedInApiClient(new LinkedInAccessToken(token, tokenSecret));
     }
-    
+
     /**
      * Creates a new LinkedInApiClient object.
-     * 
+     *
      * @param accessToken the access token
-     * 
+     *
      * @return the people api client
      */
     public PeopleApiClient createPeopleApiClient(LinkedInAccessToken accessToken) {
     	return createLinkedInApiClient(accessToken);
     }
-    
+
     /**
      * Creates a new LinkedInApiClient object.
-     * 
+     *
      * @param token the token
      * @param tokenSecret the token secret
-     * 
+     *
      * @return the people api client
      */
     public PeopleApiClient createPeopleApiClient(String token, String tokenSecret) {
     	return createLinkedInApiClient(new LinkedInAccessToken(token, tokenSecret));
     }
-    
+
     /**
      * Creates a new LinkedInApiClient object.
-     * 
+     *
      * @param accessToken the access token
-     * 
+     *
      * @return the companies api client
      */
     public CompaniesApiClient createCompaniesApiClient(LinkedInAccessToken accessToken) {
     	return createLinkedInApiClient(accessToken);
     }
-    
+
     /**
      * Creates a new LinkedInApiClient object.
-     * 
+     *
      * @param token the token
      * @param tokenSecret the token secret
-     * 
+     *
      * @return the companies api client
      */
     public CompaniesApiClient createCompaniesApiClient(String token, String tokenSecret) {
     	return createLinkedInApiClient(new LinkedInAccessToken(token, tokenSecret));
     }
-    
+
     /**
      * Creates a new LinkedInApiClient object.
-     * 
+     *
      * @param accessToken the access token
-     * 
+     *
      * @return the jobs api client
      */
     public JobsApiClient createJobsApiClient(LinkedInAccessToken accessToken) {
     	return createLinkedInApiClient(accessToken);
     }
-    
+
     /**
      * Creates a new LinkedInApiClient object.
-     * 
+     *
      * @param token the token
      * @param tokenSecret the token secret
-     * 
+     *
      * @return the jobs api client
      */
     public JobsApiClient createJobsApiClient(String token, String tokenSecret) {
     	return createLinkedInApiClient(new LinkedInAccessToken(token, tokenSecret));
     }
-    
+
     /**
      * Creates a new LinkedInApiClient object.
-     * 
+     *
      * @param accessToken the access token
-     * 
+     *
      * @return the communications api client
      */
     public CommunicationsApiClient createCommunicationsApiClient(LinkedInAccessToken accessToken) {
     	return createLinkedInApiClient(accessToken);
     }
-    
+
     /**
      * Creates a new LinkedInApiClient object.
-     * 
+     *
      * @param token the token
      * @param tokenSecret the token secret
-     * 
+     *
      * @return the communications api client
      */
     public CommunicationsApiClient createCommunicationsApiClient(String token, String tokenSecret) {
     	return createLinkedInApiClient(new LinkedInAccessToken(token, tokenSecret));
     }
-    
+
     /**
      * Creates a new LinkedInApiClient object.
-     * 
+     *
      * @param accessToken the access token
-     * 
+     *
      * @return the network updates api client
      */
     public NetworkUpdatesApiClient createNetworkUpdatesApiClient(LinkedInAccessToken accessToken) {
     	return createLinkedInApiClient(accessToken);
     }
-    
+
     /**
      * Creates a new LinkedInApiClient object.
-     * 
+     *
      * @param token the token
      * @param tokenSecret the token secret
-     * 
+     *
      * @return the network updates api client
      */
     public NetworkUpdatesApiClient createNetworkUpdatesApiClient(String token, String tokenSecret) {
     	return createLinkedInApiClient(new LinkedInAccessToken(token, tokenSecret));
     }
-    
+
     /**
      * Creates a new LinkedInApiClient object.
-     * 
+     *
      * @param token the token
      * @param tokenSecret the token secret
-     * 
+     *
      * @return the async linked in api client
      */
     public AsyncLinkedInApiClient createAsyncLinkedInApiClient(String token, String tokenSecret) {
         return createAsyncLinkedInApiClient(new LinkedInAccessToken(token, tokenSecret));
     }
-    
+
     /**
      * Validate consumer key.
-     * 
+     *
      * @param apiConsumer the api consumer
      */
 	private static void validateConsumerKey(LinkedInApiConsumer apiConsumer) {
@@ -312,21 +312,25 @@ public class LinkedInApiClientFactory {
     		throw new IllegalArgumentException("consumer secret cannot be null or empty.");
     	}
 	}
-    
+
     /**
      * Validate access token.
-     * 
+     *
      * @param accessToken the access token
      */
 	private void validateAccessToken(LinkedInAccessToken accessToken) {
 		if (accessToken == null) {
     		throw new IllegalArgumentException("access token cannot be null.");
     	}
+
+    // Oauth2 insert
+    if(accessToken.getOauth2Token() == null) {
     	if (accessToken.getToken() == null || accessToken.getToken().length() == 0) {
     		throw new IllegalArgumentException("access token cannot be null or empty.");
     	}
     	if (accessToken.getTokenSecret() == null || accessToken.getTokenSecret().length() == 0) {
     		throw new IllegalArgumentException("access token secret cannot be null or empty.");
     	}
+    }
 	}
 }

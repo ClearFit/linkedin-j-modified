@@ -38,6 +38,7 @@ import oauth.signpost.signature.HmacSha1MessageSigner;
 
 import com.google.code.linkedinapi.client.constant.ApplicationConstants;
 import com.google.code.linkedinapi.client.constant.LinkedInApiUrls;
+import sun.net.www.protocol.https.HttpsURLConnectionImpl;
 
 /**
  * @author Nabeel Mukhtar
@@ -197,13 +198,17 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     	if (accessToken == null) {
     		throw new IllegalArgumentException("access token cannot be null.");
     	}
+
+      // only sign if oauth2 token is null
+      if (accessToken.getOauth2Token() == null) {
         try {
-        	final OAuthConsumer consumer = getOAuthConsumer();
+          final OAuthConsumer consumer = getOAuthConsumer();
             consumer.setTokenWithSecret(accessToken.getToken(), accessToken.getTokenSecret());
             consumer.sign(request);
         } catch (Exception e) {
             throw new LinkedInOAuthServiceException(e);
         }
+      }
     }
     
     /**

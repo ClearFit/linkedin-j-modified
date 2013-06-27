@@ -25,18 +25,21 @@ import java.util.Date;
  *
  */
 public abstract class LinkedInOAuthToken implements Serializable {
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 4249791194912997698L;
-	
+
     /** Access Token */
     private String token;
 
     /** Token Secret */
     private String tokenSecret;
-    
+
+    /** Oauth2 Token used without instead of token and token secret */
+    private String oauth2Token;
+
     /** Token Secret */
     private Date expirationTime;
 
@@ -50,6 +53,10 @@ public abstract class LinkedInOAuthToken implements Serializable {
     public LinkedInOAuthToken(String token, String tokenSecret) {
         this.token       = token;
         this.tokenSecret = tokenSecret;
+    }
+
+  public LinkedInOAuthToken(String oauth2Token) {
+        this.oauth2Token = oauth2Token;
     }
 
     /**
@@ -158,4 +165,13 @@ public abstract class LinkedInOAuthToken implements Serializable {
 	public void setExpirationTime(Date expirationTime) {
 		this.expirationTime = expirationTime;
 	}
+
+  public String getOauth2Token() {
+    return oauth2Token;
+  }
+
+  public void setOauth2Token(String oauth2Token) {
+    this.oauth2Token = oauth2Token;
+  }
+
 }
