@@ -90,7 +90,7 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
     RELATION_TO_VIEWER_RELATED_CONNECTIONS_HEADLINE("headline", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
     RELATION_TO_VIEWER_RELATED_CONNECTIONS_PICTURE_URL("picture-url", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
     RELATION_TO_VIEWER_RELATED_CONNECTIONS_PUBLIC_PROFILE_URL("public-profile-url", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
-    RELATION_TO_VIEWER_RELATED_CONNECTIONS_PUBLIC_PROFILE_ID("id", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
+    RELATION_TO_VIEWER_RELATED_CONNECTIONS_ID("id", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
 
     /**
      * a total attribute will denote the number of connections that link the fetching member to the fetched. Contains brief connection/person objects indicating the connecting first degree members.
