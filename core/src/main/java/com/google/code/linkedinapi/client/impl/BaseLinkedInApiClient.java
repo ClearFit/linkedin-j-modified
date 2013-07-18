@@ -3780,12 +3780,14 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                 LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getConsumerKey(),
                     apiConsumer.getConsumerSecret());
 
-            // oauth2 token hack, this seemed like the easiest... place to do it
-            if (apiUrl.contains("?")) {
-              apiUrl = apiUrl + "&oauth2_access_token=" + accessToken.getOauth2Token();
-            }
-            else {
-              apiUrl = apiUrl + "?oauth2_access_token=" + accessToken.getOauth2Token();
+            if(accessToken.getOauth2Token() != null && !accessToken.getOauth2Token().isEmpty()) {
+              // oauth2 token hack, this seemed like the easiest... place to do it
+              if (apiUrl.contains("?")) {
+                apiUrl = apiUrl + "&oauth2_access_token=" + accessToken.getOauth2Token();
+              }
+              else {
+                apiUrl = apiUrl + "?oauth2_access_token=" + accessToken.getOauth2Token();
+              }
             }
 
             LOG.info("Calling LinkedIn URL: " + apiUrl);
