@@ -4,9 +4,23 @@
   <artifactId>linkedin-j-core</artifactId>
   <version>1.2.1-SNAPSHOT</version>
   <packaging>jar</packaging>
+  <scm>
+    <url>ssh://git@github.com:telmperez/linkedin-j-modified.git/core</url>
+    <connection>scm:git:ssh://git@github.com:telmperez/linkedin-j-modified.git/core</connection>
+    <developerConnection>scm:git:ssh://git@github.com:telmperez/linkedin-j-modified.git/core</developerConnection>
+  </scm>
   <build>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <configuration>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+            <tagNameFormat>v@{project.version}</tagNameFormat>
+            <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
+          </configuration>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
