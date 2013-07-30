@@ -5,9 +5,9 @@
   <version>1.2.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <scm>
-    <url>ssh://git@github.com:telmperez/linkedin-j-modified.git/core</url>
-    <connection>scm:git:ssh://git@github.com:telmperez/linkedin-j-modified.git/core</connection>
-    <developerConnection>scm:git:ssh://git@github.com:telmperez/linkedin-j-modified.git/core</developerConnection>
+    <url>scm:git:git@github.com:telmperez/linkedin-j-modified.git/core</url>
+    <connection>scm:git:git@github.com:telmperez/linkedin-j-modified.git/core</connection>
+    <developerConnection>scm:git:git@github.com:telmperez/linkedin-j-modified.git/core</developerConnection>
   </scm>
   <build>
     <pluginManagement>
