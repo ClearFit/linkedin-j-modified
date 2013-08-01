@@ -82,4 +82,16 @@
       <scope>runtime</scope>
     </dependency>
   </dependencies>
+  <distributionManagement>
+    <repository>
+      <id>triggerfox-releases</id>
+      <name>Triggerfox - Releases</name>
+      <url>https://artifacts.triggerfox.com/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>triggerfox-snapshots</id>
+      <name>Triggerfox - Snapshots</name>
+      <url>https://artifacts.triggerfox.com/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
 </project>
