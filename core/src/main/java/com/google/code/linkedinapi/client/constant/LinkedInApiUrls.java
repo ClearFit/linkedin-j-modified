@@ -44,13 +44,13 @@ import com.google.code.linkedinapi.schema.FacetType;
 public final class LinkedInApiUrls {
 
     /** The Constant API_URLS_FILE. */
-    public static final String API_URLS_FILE = "LinkedInApiUrls.properties";
+    public static String API_URLS_FILE = "LinkedInApiUrls.properties";
 
     /** The static logger. */
     private static final Logger LOG = Logger.getLogger(LinkedInApiUrls.class.getCanonicalName());
     
     /** The Constant linkedInApiUrls. */
-    private static final Properties linkedInApiUrls = new Properties();
+    public static Properties linkedInApiUrls = new Properties();
 
     static {
         try {
@@ -61,205 +61,205 @@ public final class LinkedInApiUrls {
     }
 
     /** The Constant GET_PROFILE_FOR_CURRENT_USER. */
-    public static final String GET_PROFILE_FOR_CURRENT_USER =
+    public static String GET_PROFILE_FOR_CURRENT_USER =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getProfileForCurrentUser");
     
-    public static final String GET_EMAIL_ADDRESS_FOR_CURRENT_USER =
+    public static String GET_EMAIL_ADDRESS_FOR_CURRENT_USER =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getUserEmailAddress");
 
     /** The Constant GET_PROFILE_BY_ID. */
-    public static final String GET_PROFILE_BY_ID =
+    public static String GET_PROFILE_BY_ID =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getProfileById");
 
     /** The Constant GET_PROFILE_BY_URL. */
-    public static final String GET_PROFILE_BY_URL =
+    public static String GET_PROFILE_BY_URL =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getProfileByUrl");
 
     /** The Constant SEARCH_PEOPLE. */
-    public static final String SEARCH_PEOPLE =
+    public static String SEARCH_PEOPLE =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchPeople");
 
     /** The Constant SEARCH_PEOPLE. */
-    public static final String SEARCH_FACETS =
+    public static String SEARCH_FACETS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchFacets");
     
     /** The Constant SEARCH_PEOPLE_FACETS. */
-    public static final String SEARCH_PEOPLE_FACETS =
+    public static String SEARCH_PEOPLE_FACETS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchPeopleFacets");
     
     /** The Constant POST_UPDATE. */
-    public static final String POST_UPDATE =
+    public static String POST_UPDATE =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.postUpdate");
 
     /** The Constant POST_STATUS. */
-    public static final String POST_STATUS =
+    public static String POST_STATUS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.postStatus");
 
     /** The Constant POST_COMMENT. */
-    public static final String POST_COMMENT =
+    public static String POST_COMMENT =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.postComment");
 
     /** The Constant SEND_MESSAGE. */
-    public static final String SEND_MESSAGE =
+    public static String SEND_MESSAGE =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.sendMessage");
 
 
     /** The Constant LINKED_IN_OAUTH_REQUEST_TOKEN_URL. */
-    public static final String LINKED_IN_OAUTH_REQUEST_TOKEN_URL =
+    public static String LINKED_IN_OAUTH_REQUEST_TOKEN_URL =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.oauth.requestToken");
 
     /** The Constant LINKED_IN_OAUTH_AUTHORIZE_URL. */
-    public static final String LINKED_IN_OAUTH_AUTHORIZE_URL =
+    public static String LINKED_IN_OAUTH_AUTHORIZE_URL =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.oauth.authorize");
 
     /** The Constant LINKED_IN_OAUTH_ACCESS_TOKEN_URL. */
-    public static final String LINKED_IN_OAUTH_ACCESS_TOKEN_URL =
+    public static String LINKED_IN_OAUTH_ACCESS_TOKEN_URL =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.oauth.accessToken");
 
     /** The Constant LINKED_IN_OAUTH_ACCESS_TOKEN_URL. */
-    public static final String LINKED_IN_OAUTH_INVALIDATE_TOKEN_URL =
+    public static String LINKED_IN_OAUTH_INVALIDATE_TOKEN_URL =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.oauth.invalidateToken");
     
     /** The Constant NETWORK_UPDATES. */
-    public static final String NETWORK_UPDATES =
+    public static String NETWORK_UPDATES =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.networkUpdates");
     
     /** The Constant USER_UPDATES. */
-    public static final String USER_UPDATES =
+    public static String USER_UPDATES =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.userUpdates");
     
     /** The Constant NETWORK_UPDATE_COMMENTS. */
-    public static final String NETWORK_UPDATE_COMMENTS =
+    public static String NETWORK_UPDATE_COMMENTS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.networkUpdateComments");
     
     /** The Constant NETWORK_UPDATE_LIKES. */
-    public static final String NETWORK_UPDATE_LIKES =
+    public static String NETWORK_UPDATE_LIKES =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.networkUpdateLikes");
     
     /** The Constant NETWORK_UPDATE_LIKE. */
-    public static final String NETWORK_UPDATE_LIKE =
+    public static String NETWORK_UPDATE_LIKE =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.networkUpdateLike");
     
     /** The Constant GET_CONNECTIONS_FOR_CURRENT_USER. */
-    public static final String GET_CONNECTIONS_FOR_CURRENT_USER =
+    public static String GET_CONNECTIONS_FOR_CURRENT_USER =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getConnectionsForCurrentUser");
 
     /** The Constant GET_CONNECTIONS_BY_ID. */
-    public static final String GET_CONNECTIONS_BY_ID =
+    public static String GET_CONNECTIONS_BY_ID =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getConnectionsById");
 
     /** The Constant GET_CONNECTIONS_BY_EMAIL. */
-    public static final String GET_CONNECTIONS_BY_EMAIL =
+    public static String GET_CONNECTIONS_BY_EMAIL =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getConnectionsByEmail");
 
     /** The Constant GET_CONNECTIONS_BY_URL. */
-    public static final String GET_CONNECTIONS_BY_URL =
+    public static String GET_CONNECTIONS_BY_URL =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getConnectionsByUrl");
 
     /** The Constant SEND_MESSAGE_PERSON_PATH. */
-    public static final String SEND_MESSAGE_PERSON_PATH =
+    public static String SEND_MESSAGE_PERSON_PATH =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.messagePersonPath");
 
     /** The Constant SEND_INVITE_ID_PERSON_PATH. */
-    public static final String SEND_INVITE_ID_PERSON_PATH =
+    public static String SEND_INVITE_ID_PERSON_PATH =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.inviteIdPersonPath");
 
     /** The Constant SEND_INVITE_EMAIL_PERSON_PATH. */
-    public static final String SEND_INVITE_EMAIL_PERSON_PATH =
+    public static String SEND_INVITE_EMAIL_PERSON_PATH =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.inviteEmailPersonPath");
     
     /** The Constant POST_SHARE. */
-    public static final String POST_SHARE =
+    public static String POST_SHARE =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.postShare");
     
     /** The Constant RE_SHARE. */
-    public static final String RE_SHARE =
+    public static String RE_SHARE =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.reShare");
-    public static final String GET_COMPANY_BY_ID =
+    public static String GET_COMPANY_BY_ID =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getCompanyById");
-    public static final String GET_COMPANY_BY_UNIVERSAL_NAME =
+    public static String GET_COMPANY_BY_UNIVERSAL_NAME =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getCompanyByUniversalName");
-    public static final String GET_COMPANIES_BY_EMAIL_DOMAIN =
+    public static String GET_COMPANIES_BY_EMAIL_DOMAIN =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getCompaniesByEmailDomain");
-    public static final String SEARCH_COMPANIES =
+    public static String SEARCH_COMPANIES =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchCompanies");
-    public static final String SEARCH_FACETS_FOR_COMPANIES =
+    public static String SEARCH_FACETS_FOR_COMPANIES =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchFacetsForCompanies");
-    public static final String SEARCH_COMPANIES_FACETS =
+    public static String SEARCH_COMPANIES_FACETS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchCompaniesAndFacets");
-    public static final String GET_FOLLOWED_COMPANIES =
+    public static String GET_FOLLOWED_COMPANIES =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getFollowedCompanies");
-    public static final String GET_SUGGESTED_COMPANIES =
+    public static String GET_SUGGESTED_COMPANIES =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getSuggestedCompanies");
-    public static final String FOLLOW_COMPANY =
+    public static String FOLLOW_COMPANY =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.followCompany");
-    public static final String UNFOLLOW_COMPANY =
+    public static String UNFOLLOW_COMPANY =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.unfollowCompany");
-    public static final String GET_COMPANY_PRODUCTS =
+    public static String GET_COMPANY_PRODUCTS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getCompanyProducts");
-    public static final String GET_JOB_BY_ID =
+    public static String GET_JOB_BY_ID =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getJobById");
-    public static final String SEARCH_JOBS =
+    public static String SEARCH_JOBS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchJobs");
-    public static final String SEARCH_FACETS_FOR_JOBS =
+    public static String SEARCH_FACETS_FOR_JOBS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchFacetsForJobs");
-    public static final String SEARCH_JOBS_FACETS =
+    public static String SEARCH_JOBS_FACETS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchJobsAndFacets");
-    public static final String GET_JOB_BOOKMARKS =
+    public static String GET_JOB_BOOKMARKS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getJobBookmarks");
-    public static final String BOOKMARK_JOB =
+    public static String BOOKMARK_JOB =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.bookmarkJob");
-    public static final String UNBOOKMARK_JOB =
+    public static String UNBOOKMARK_JOB =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.unbookmarkJob");
-    public static final String GET_JOB_SUGGESTIONS =
+    public static String GET_JOB_SUGGESTIONS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getJobSuggestions");
-    public static final String POST_JOB =
+    public static String POST_JOB =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.postJob");
-    public static final String EDIT_JOB =
+    public static String EDIT_JOB =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.editJob");
-    public static final String RENEW_JOB =
+    public static String RENEW_JOB =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.renewJob");
-    public static final String CLOSE_JOB =
+    public static String CLOSE_JOB =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.closeJob");
-    public static final String GET_GROUP_BY_ID =
+    public static String GET_GROUP_BY_ID =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getGroupById");
-    public static final String GET_GROUP_MEMBERSHIPS =
+    public static String GET_GROUP_MEMBERSHIPS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getGroupMemberships");
-    public static final String UPDATE_GROUP_MEMBERSHIP =
+    public static String UPDATE_GROUP_MEMBERSHIP =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.updateGroupMembership");
-    public static final String JOIN_GROUP =
+    public static String JOIN_GROUP =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.joinGroup");
-    public static final String LEAVE_GROUP =
+    public static String LEAVE_GROUP =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.leaveGroup");
-    public static final String GET_POSTS_BY_GROUP =
+    public static String GET_POSTS_BY_GROUP =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getPostsByGroup");
-    public static final String GET_POST =
+    public static String GET_POST =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getPost");
-    public static final String GET_POST_COMMENTS =
+    public static String GET_POST_COMMENTS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getPostComments");
-    public static final String CREATE_POST =
+    public static String CREATE_POST =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.createPost");
-    public static final String LIKE_POST =
+    public static String LIKE_POST =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.likePost");
-    public static final String UNLIKE_POST =
+    public static String UNLIKE_POST =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.unlikePost");
-    public static final String FOLLOW_POST =
+    public static String FOLLOW_POST =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.followPost");
-    public static final String UNFOLLOW_POST =
+    public static String UNFOLLOW_POST =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.unfollowPost");
-    public static final String FLAG_POST =
+    public static String FLAG_POST =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.flagPost");
-    public static final String DELETE_POST =
+    public static String DELETE_POST =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.deletePost");
-    public static final String GET_POST_COMMENT =
+    public static String GET_POST_COMMENT =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getPostComment");
-    public static final String ADD_POST_COMMENT =
+    public static String ADD_POST_COMMENT =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.addPostComment");
-    public static final String DELETE_POST_COMMENT =
+    public static String DELETE_POST_COMMENT =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.deletePostComment");
-    public static final String GET_SUGGESTED_GROUPS =
+    public static String GET_SUGGESTED_GROUPS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getSuggestedGroups");
-    public static final String DELETE_GROUP_SUGGESTION =
+    public static String DELETE_GROUP_SUGGESTION =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.deleteGroupSuggestion");
     /**
      * Instantiates a new linked in api urls.
