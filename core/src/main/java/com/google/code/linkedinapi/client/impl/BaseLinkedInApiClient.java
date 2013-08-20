@@ -3735,7 +3735,11 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     protected <T> T readResponse(Class<T> clazz, InputStream is) {
         try {
-            return unmarshallObject(clazz, is);
+          T object = unmarshallObject(clazz, is);
+          String response = marshallObject(object);
+          LOG.info(response);
+
+          return object;
         } finally {
             closeStream(is);
         }
