@@ -72,30 +72,30 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
     /**
      * the degree distance of the fetched profile from the member who fetched the profile
      */
-    DISTANCE("distance", null, false),
+    DISTANCE("distance", null, true),
 
     /**
      * the degree distance of the fetched profile from the member who fetched the profile
      */
-    RELATION_TO_VIEWER("relation-to-viewer", null, false),
+    RELATION_TO_VIEWER("relation-to-viewer", null, true),
     
     /**
      * the degree distance of the fetched profile from the member who fetched the profile
      */
-    RELATION_TO_VIEWER_DISTANCE("distance", RELATION_TO_VIEWER, false),
+    RELATION_TO_VIEWER_DISTANCE("distance", RELATION_TO_VIEWER, true),
 
-    RELATION_TO_VIEWER_RELATED_CONNECTIONS("related-connections", RELATION_TO_VIEWER, false),
-    RELATION_TO_VIEWER_RELATED_CONNECTIONS_FIRST_NAME("first-name", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
-    RELATION_TO_VIEWER_RELATED_CONNECTIONS_LAST_NAME("last-name", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
-    RELATION_TO_VIEWER_RELATED_CONNECTIONS_HEADLINE("headline", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
-    RELATION_TO_VIEWER_RELATED_CONNECTIONS_PICTURE_URL("picture-url", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
-    RELATION_TO_VIEWER_RELATED_CONNECTIONS_PUBLIC_PROFILE_URL("public-profile-url", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
-    RELATION_TO_VIEWER_RELATED_CONNECTIONS_ID("id", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
+    RELATION_TO_VIEWER_RELATED_CONNECTIONS("related-connections", RELATION_TO_VIEWER, true),
+    RELATION_TO_VIEWER_RELATED_CONNECTIONS_FIRST_NAME("first-name", RELATION_TO_VIEWER_RELATED_CONNECTIONS, true),
+    RELATION_TO_VIEWER_RELATED_CONNECTIONS_LAST_NAME("last-name", RELATION_TO_VIEWER_RELATED_CONNECTIONS, true),
+    RELATION_TO_VIEWER_RELATED_CONNECTIONS_HEADLINE("headline", RELATION_TO_VIEWER_RELATED_CONNECTIONS, true),
+    RELATION_TO_VIEWER_RELATED_CONNECTIONS_PICTURE_URL("picture-url", RELATION_TO_VIEWER_RELATED_CONNECTIONS, true),
+    RELATION_TO_VIEWER_RELATED_CONNECTIONS_PUBLIC_PROFILE_URL("public-profile-url", RELATION_TO_VIEWER_RELATED_CONNECTIONS, true),
+    RELATION_TO_VIEWER_RELATED_CONNECTIONS_ID("id", RELATION_TO_VIEWER_RELATED_CONNECTIONS, true),
 
     /**
      * a total attribute will denote the number of connections that link the fetching member to the fetched. Contains brief connection/person objects indicating the connecting first degree members.
      */
-    RELATION_TO_VIEWER_CONNECTIONS("num-related-connections", RELATION_TO_VIEWER, false),
+    RELATION_TO_VIEWER_CONNECTIONS("num-related-connections", RELATION_TO_VIEWER, true),
 
     /**
      * the member's current status, if set
@@ -124,12 +124,12 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
     /**
      * A long-form text area where the member describes their professional profile
      */
-    SUMMARY("summary", null, false),
+    SUMMARY("summary", null, true),
 
     /**
      * A short-form text area where the member enumerates their specialties.
      */
-    SPECIALTIES("specialties", null, false),
+    SPECIALTIES("specialties", null, true),
 
     /**
      * A short-form text area describing how the member approaches proposals
