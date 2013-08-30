@@ -139,15 +139,15 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
     /**
      * A short-form text area enumerating the Associations a member has
      */
-    ASSOCIATIONS("associations", null, false),
+    ASSOCIATIONS("associations", null, true),
 
     /**
      * A short-form text area describing what Honors the member may have
      */
     
-    HONORS("honors", null, false),
+    HONORS("honors", null, true),
 
-    INTERESTS("interests", null, false),
+    INTERESTS("interests", null, true),
     
     /**
      * A collection of positions a member has had, the total indicated by a total attribute
