@@ -16,13 +16,7 @@
  */
 package com.google.code.linkedinapi.client.impl;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
@@ -3848,7 +3842,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
    * @param expected
    * @return
    */
-  protected InputStream callApiMethod(String apiUrl, String xmlContent, String contentType, HttpMethod method,
+  protected void callApiMethod(String apiUrl, String xmlContent, String contentType, HttpMethod method,
                                       int expected) {
     try {
       LinkedInOAuthService oAuthService =
@@ -3911,8 +3905,11 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         throw createLinkedInApiClientException(error);
       }
       else {
-        return getWrappedInputStream(request.getInputStream(),
-            GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding()));
+//        return getWrappedInputStream(request.getInputStream(),
+//            GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding()));
+        InputStream inputStream = getWrappedInputStream(request.getInputStream(), GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding()));
+        String response = convertStreamToString(inputStream);
+        LOG.info("Response: " + response);
       }
     }
     catch (IOException e) {
