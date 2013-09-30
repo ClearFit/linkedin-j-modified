@@ -117,6 +117,8 @@ import com.google.code.linkedinapi.schema.VisibilityType;
  */
 public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
+  public static boolean outputResponse = false;
+
   /**
    * Field description
    */
@@ -3843,7 +3845,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
    * @return
    */
   protected void callApiMethod(String apiUrl, String xmlContent, String contentType, HttpMethod method,
-                                      int expected) {
+                               int expected) {
     try {
       LinkedInOAuthService oAuthService =
           LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getConsumerKey(),
@@ -3859,8 +3861,10 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         }
       }
 
-      LOG.info("Calling LinkedIn URL: " + apiUrl);
-      LOG.info("XML Content: " + xmlContent);
+      if (outputResponse) {
+        LOG.info("Calling LinkedIn URL: " + apiUrl);
+        LOG.info("XML Content: " + xmlContent);
+      }
 
       URL url = new URL(apiUrl);
 
@@ -3909,7 +3913,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 //            GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding()));
         InputStream inputStream = getWrappedInputStream(request.getInputStream(), GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding()));
         String response = convertStreamToString(inputStream);
-        LOG.info("Response: " + response);
+        if (outputResponse) {
+          LOG.info("Response: " + response);
+        }
       }
     }
     catch (IOException e) {
@@ -3973,6 +3979,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
    * @param is
    * @param gzip
    * @return
+   *
    * @throws IOException
    */
   protected InputStream getWrappedInputStream(InputStream is, boolean gzip) throws IOException {
