@@ -60,7 +60,7 @@ public final class LinkedInApiUrls {
 
   static {
     try {
-      linkedInApiUrls.load(LinkedInApiUrls.class.getResourceAsStream(API_URLS_FILE));
+      linkedInApiUrls.load(LinkedInApiUrls.class.getResourceAsStream(ApplicationConstants.BASE_URL_FILE));
     }
     catch (IOException e) {
       LOG.log(Level.SEVERE, "An error occurred while loading urls.", e);

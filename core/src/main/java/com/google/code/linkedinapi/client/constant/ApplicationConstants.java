@@ -79,7 +79,9 @@ public final class ApplicationConstants {
     
     /** The Constant AUTH_HEADER_NAME. */
     public static final String EXPIRATION_PARAMETER_NAME = getProperty("com.google.code.linkedinapi.client.expirationParameterName");
-    
+
+    public static final String BASE_URL_FILE = getProperty("com.google.code.linkedinapi.client.baseUrlFile");
+
     /**
      * Instantiates a new application constants.
      */
