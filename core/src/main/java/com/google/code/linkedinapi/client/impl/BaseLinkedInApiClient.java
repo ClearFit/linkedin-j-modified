@@ -63,7 +63,6 @@ import com.google.code.linkedinapi.client.oauth.LinkedInOAuthService;
 import com.google.code.linkedinapi.client.oauth.LinkedInOAuthServiceFactory;
 import com.google.code.linkedinapi.schema.Activity;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
-import com.google.code.linkedinapi.schema.Attachment;
 import com.google.code.linkedinapi.schema.Attribution;
 import com.google.code.linkedinapi.schema.Authorization;
 import com.google.code.linkedinapi.schema.Comment;
@@ -117,7 +116,7 @@ import com.google.code.linkedinapi.schema.VisibilityType;
  */
 public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
-  public static boolean outputResponse = false;
+  public static boolean OUTPUT_RESPONSE = false;
 
   /**
    * Field description
@@ -3746,7 +3745,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     try {
       T object = unmarshallObject(clazz, is);
       String response = marshallObject(object);
-      LOG.info(response);
+      if (OUTPUT_RESPONSE) {
+        LOG.info(response);
+      }
 
       return object;
     }
@@ -3795,7 +3796,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         }
       }
 
-      LOG.info("Calling LinkedIn URL: " + apiUrl);
+      if (OUTPUT_RESPONSE) {
+        LOG.info("Calling LinkedIn URL: " + apiUrl);
+      }
 
       URL url = new URL(apiUrl);
       HttpURLConnection request = (HttpURLConnection) url.openConnection();
@@ -3861,7 +3864,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         }
       }
 
-      if (outputResponse) {
+      if (OUTPUT_RESPONSE) {
         LOG.info("Calling LinkedIn URL: " + apiUrl);
         LOG.info("XML Content: " + xmlContent);
       }
@@ -3913,7 +3916,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 //            GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding()));
         InputStream inputStream = getWrappedInputStream(request.getInputStream(), GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding()));
         String response = convertStreamToString(inputStream);
-        if (outputResponse) {
+        if (OUTPUT_RESPONSE) {
           LOG.info("Response: " + response);
         }
       }
