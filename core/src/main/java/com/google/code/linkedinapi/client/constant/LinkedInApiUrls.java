@@ -76,6 +76,9 @@ public final class LinkedInApiUrls {
   public static String GET_EMAIL_ADDRESS_FOR_CURRENT_USER =
       linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getUserEmailAddress");
 
+  public static String GET_ORIGINAL_IMAGE_FOR_USER =
+      linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getOriginalPictureUrlsForUser");
+
   /**
    * The Constant GET_PROFILE_BY_ID.
    */

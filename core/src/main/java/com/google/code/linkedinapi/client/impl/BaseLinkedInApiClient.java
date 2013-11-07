@@ -33,6 +33,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.code.linkedinapi.client.LinkedInApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClientException;
 import com.google.code.linkedinapi.client.Parameter;
@@ -61,55 +62,15 @@ import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
 import com.google.code.linkedinapi.client.oauth.LinkedInApiConsumer;
 import com.google.code.linkedinapi.client.oauth.LinkedInOAuthService;
 import com.google.code.linkedinapi.client.oauth.LinkedInOAuthServiceFactory;
-import com.google.code.linkedinapi.schema.Activity;
-import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
-import com.google.code.linkedinapi.schema.Attribution;
-import com.google.code.linkedinapi.schema.Authorization;
-import com.google.code.linkedinapi.schema.Comment;
-import com.google.code.linkedinapi.schema.Comments;
-import com.google.code.linkedinapi.schema.Companies;
-import com.google.code.linkedinapi.schema.Company;
-import com.google.code.linkedinapi.schema.CompanySearch;
-import com.google.code.linkedinapi.schema.Connections;
-import com.google.code.linkedinapi.schema.Content;
-import com.google.code.linkedinapi.schema.EmailAddress;
-import com.google.code.linkedinapi.schema.EmailDigestFrequency;
-import com.google.code.linkedinapi.schema.EmailDigestFrequencyCode;
+import com.google.code.linkedinapi.schema.*;
 import com.google.code.linkedinapi.schema.Error;
-import com.google.code.linkedinapi.schema.FacetType;
-import com.google.code.linkedinapi.schema.Group;
-import com.google.code.linkedinapi.schema.GroupMembership;
-import com.google.code.linkedinapi.schema.GroupMemberships;
-import com.google.code.linkedinapi.schema.Groups;
-import com.google.code.linkedinapi.schema.HttpHeader;
-import com.google.code.linkedinapi.schema.InvitationRequest;
-import com.google.code.linkedinapi.schema.InviteConnectType;
-import com.google.code.linkedinapi.schema.Job;
-import com.google.code.linkedinapi.schema.JobBookmark;
-import com.google.code.linkedinapi.schema.JobBookmarks;
-import com.google.code.linkedinapi.schema.JobSearch;
-import com.google.code.linkedinapi.schema.JobSuggestions;
-import com.google.code.linkedinapi.schema.Jobs;
-import com.google.code.linkedinapi.schema.Likes;
-import com.google.code.linkedinapi.schema.MailboxItem;
-import com.google.code.linkedinapi.schema.MembershipState;
-import com.google.code.linkedinapi.schema.MembershipStateCode;
-import com.google.code.linkedinapi.schema.Network;
-import com.google.code.linkedinapi.schema.NetworkUpdateContentType;
-import com.google.code.linkedinapi.schema.People;
-import com.google.code.linkedinapi.schema.PeopleSearch;
-import com.google.code.linkedinapi.schema.Person;
-import com.google.code.linkedinapi.schema.Post;
-import com.google.code.linkedinapi.schema.PostCategoryCode;
-import com.google.code.linkedinapi.schema.Posts;
-import com.google.code.linkedinapi.schema.Products;
-import com.google.code.linkedinapi.schema.Recipient;
-import com.google.code.linkedinapi.schema.SchemaElementFactory;
-import com.google.code.linkedinapi.schema.Share;
-import com.google.code.linkedinapi.schema.UpdateComment;
-import com.google.code.linkedinapi.schema.UpdateComments;
-import com.google.code.linkedinapi.schema.Visibility;
-import com.google.code.linkedinapi.schema.VisibilityType;
+import com.google.code.linkedinapi.schema.json.PictureUrls;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 
 /**
  * @author Nabeel Mukhtar
@@ -132,6 +93,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
    * Field description
    */
   private final SchemaElementFactory<?> OBJECT_FACTORY = createObjectFactory();
+
+  private static ObjectMapper JSON_OBJECT_MAPPER = new ObjectMapper();
+  ;
 
   /**
    * The static logger.
@@ -1125,6 +1089,36 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     String apiUrl = builder.buildUrl();
 
     return readResponse(EmailAddress.class, callApiMethod(apiUrl));
+  }
+
+  @Override
+  public PictureUrls getOriginalPictureUrlsForUser(String id) {
+    LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_ORIGINAL_IMAGE_FOR_USER).withField(ParameterNames.ID, id);
+    String apiUrl = builder.buildUrl();
+    apiUrl = apiUrl + "?format=json&oauth2_access_token=" + accessToken.getOauth2Token();
+
+    CloseableHttpClient httpclient = HttpClients.createDefault();
+    try {
+      HttpGet httpget = new HttpGet(apiUrl);
+      CloseableHttpResponse response = httpclient.execute(httpget);
+      int statusCode = response.getStatusLine().getStatusCode();
+      String responseString = EntityUtils.toString(response.getEntity());
+      if (OUTPUT_RESPONSE) {
+        LOG.info(responseString);
+      }
+      return JSON_OBJECT_MAPPER.readValue(responseString, PictureUrls.class);
+    }
+    catch (IOException e) {
+      throw new LinkedInApiClientException(e);
+    }
+    finally {
+      try {
+        httpclient.close();
+      }
+      catch (IOException e) {
+        LOG.log(Level.SEVERE, e.getMessage(), e);
+      }
+    }
   }
 
   /**

@@ -28,13 +28,8 @@ import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.ProfileType;
 import com.google.code.linkedinapi.client.enumeration.SearchParameter;
 import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
-import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
-import com.google.code.linkedinapi.schema.Connections;
-import com.google.code.linkedinapi.schema.EmailAddress;
-import com.google.code.linkedinapi.schema.FacetType;
-import com.google.code.linkedinapi.schema.People;
-import com.google.code.linkedinapi.schema.PeopleSearch;
-import com.google.code.linkedinapi.schema.Person;
+import com.google.code.linkedinapi.schema.*;
+import com.google.code.linkedinapi.schema.json.PictureUrls;
 
 /**
  * The Interface PeopleApiClient.
@@ -54,6 +49,8 @@ public interface PeopleApiClient extends LinkedInAuthenticationClient {
      * @return the profile for current user
      */
     public Person getProfileForCurrentUser();
+
+    public PictureUrls getOriginalPictureUrlsForUser(String id);
     
     public EmailAddress getEmailAddressForCurrentUser();
 
