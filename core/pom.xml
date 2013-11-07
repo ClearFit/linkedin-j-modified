@@ -2,13 +2,13 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.googlecode.linkedin-j</groupId>
   <artifactId>linkedin-j-core</artifactId>
-  <version>1.2.13-SNAPSHOT</version>
+  <version>1.2.13</version>
   <packaging>jar</packaging>
   <scm>
     <url>scm:git:git@github.com:telmperez/linkedin-j-modified.git</url>
     <connection>scm:git:git@github.com:telmperez/linkedin-j-modified.git</connection>
     <developerConnection>scm:git:git@github.com:telmperez/linkedin-j-modified.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>v1.2.13</tag>
   </scm>
   <build>
     <pluginManagement>
