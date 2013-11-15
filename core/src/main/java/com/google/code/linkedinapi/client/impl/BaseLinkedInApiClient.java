@@ -64,6 +64,7 @@ import com.google.code.linkedinapi.client.oauth.LinkedInOAuthService;
 import com.google.code.linkedinapi.client.oauth.LinkedInOAuthServiceFactory;
 import com.google.code.linkedinapi.schema.*;
 import com.google.code.linkedinapi.schema.Error;
+import com.google.code.linkedinapi.schema.json.ErrorMessage;
 import com.google.code.linkedinapi.schema.json.PictureUrls;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -1098,18 +1099,29 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     apiUrl = apiUrl + "?format=json&oauth2_access_token=" + accessToken.getOauth2Token();
 
     CloseableHttpClient httpclient = HttpClients.createDefault();
+    String responseString = null;
     try {
       HttpGet httpget = new HttpGet(apiUrl);
       CloseableHttpResponse response = httpclient.execute(httpget);
       int statusCode = response.getStatusLine().getStatusCode();
-      String responseString = EntityUtils.toString(response.getEntity());
+      responseString = EntityUtils.toString(response.getEntity());
       if (OUTPUT_RESPONSE) {
         LOG.info(responseString);
       }
       return JSON_OBJECT_MAPPER.readValue(responseString, PictureUrls.class);
     }
-    catch (IOException e) {
-      throw new LinkedInApiClientException(e);
+    catch (Throwable e) {
+      try {
+        ErrorMessage errorMessage = JSON_OBJECT_MAPPER.readValue(responseString, ErrorMessage.class);
+        throw new LinkedInApiClientException(errorMessage.getMessage(), 400, "0", new Date(), "request");
+      }
+      catch (Throwable ex) {
+        if (responseString != null) {
+          LOG.log(Level.SEVERE, responseString);
+        }
+        LOG.log(Level.SEVERE, e.getMessage(), e);
+        throw new LinkedInApiClientException(e);
+      }
     }
     finally {
       try {
