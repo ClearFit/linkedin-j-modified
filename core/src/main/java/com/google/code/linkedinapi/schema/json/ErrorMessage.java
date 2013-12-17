@@ -1,17 +1,20 @@
 package com.google.code.linkedinapi.schema.json;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * @author Telm Perez
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ErrorMessage {
 
   // Constants ---------------------------------------------------------------------------------------------- Constants
 
   // Instance Variables ---------------------------------------------------------------------------- Instance Variables
 
-  private String errorCode;
   private String message;
   private int status;
+  private String requestId;
 
   // Constructors ---------------------------------------------------------------------------------------- Constructors
 
@@ -31,20 +34,20 @@ public class ErrorMessage {
     this.status = status;
   }
 
-  public String getErrorCode() {
-    return errorCode;
-  }
-
-  public void setErrorCode(String errorCode) {
-    this.errorCode = errorCode;
-  }
-
   public String getMessage() {
     return message;
   }
 
   public void setMessage(String message) {
     this.message = message;
+  }
+
+  public String getRequestId() {
+    return requestId;
+  }
+
+  public void setRequestId(String requestId) {
+    this.requestId = requestId;
   }
 
 } // end of class

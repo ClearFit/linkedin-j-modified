@@ -1113,14 +1113,16 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     catch (Throwable e) {
       try {
         ErrorMessage errorMessage = JSON_OBJECT_MAPPER.readValue(responseString, ErrorMessage.class);
-        throw new LinkedInApiClientException(errorMessage.getMessage(), 400, "0", new Date(), "request");
+        throw new LinkedInApiClientException(errorMessage.getMessage(), errorMessage.getStatus(), "0", new Date(), errorMessage.getRequestId());
       }
-      catch (Throwable ex) {
+      catch (IOException ex) {
         if (responseString != null) {
           LOG.log(Level.SEVERE, responseString);
         }
-        LOG.log(Level.SEVERE, e.getMessage(), e);
-        throw new LinkedInApiClientException(e);
+        else {
+          LOG.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        throw new LinkedInApiClientException(ex);
       }
     }
     finally {
