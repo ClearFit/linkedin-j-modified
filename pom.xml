@@ -25,12 +25,6 @@
     <url>http://code.google.com/p/linkedin-j/issues/list</url>
   </issueManagement>
 
-  <scm>
-    <connection>http://linkedin-j.googlecode.com/svn/trunk/linkedin-j</connection>
-    <developerConnection>scm:svn:https://linkedin-j.googlecode.com/svn/trunk/linkedin-j/</developerConnection>
-    <url>http://linkedin-j.googlecode.com/svn/trunk/linkedin-j/</url>
-  </scm>
-
   <developers>
     <developer>
       <name>Nabeel Mukhtar</name>
